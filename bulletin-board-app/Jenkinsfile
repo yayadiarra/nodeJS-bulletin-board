@@ -9,7 +9,7 @@ pipeline {
         stage('SonarQube analysis') {
            
             steps {
-                sh " npm install"
+             
                 withSonarQubeEnv('sonarqube') {
                     sh "sonar-scanner"
                 }
