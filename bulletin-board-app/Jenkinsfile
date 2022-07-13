@@ -1,1 +1,38 @@
 
+pipeline {
+    agent any
+    
+    tools {nodejs "nodejs"}
+
+    stages {
+        
+        stage('SonarQube analysis') {
+            environment {
+                SCANNER_HOME = tool 'scanner';    
+            }
+            
+            steps {
+                
+                withSonarQubeEnv('SonarQube') {
+                    sh "${SCANNER_HOME}/bin/sonar-scanner"
+                }
+            }
+        }
+   
+     stage("Quality Gate"){
+           steps {
+               script {
+        timeout(time: 1, unit: 'HOURS') { 
+        def qg = waitForQualityGate() 
+        if (qg.status != 'OK') {
+             error "Pipeline aborted due to quality gate failure: ${qg.status}"
+    }
+  }
+           }
+           }
+} 
+    
+    }
+  
+  
+}
