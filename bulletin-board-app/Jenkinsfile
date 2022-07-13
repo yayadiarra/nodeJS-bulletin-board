@@ -5,9 +5,9 @@ pipeline {
   stages {
  
     stage('docker image') {
-      
+       dir('bulletin-board-app'){
       steps {
-        dir(bulletin-board-app){
+       
        withDockerRegistry([ credentialsId: "Docker_hub", url: "https://index.docker.io/v1/" ]) {
        sh 'docker build -t devopstrainingschool/java-nodejs-jenkins . -f Dockerfile'
        sh 'docker push devopstrainingschool/java-nodejs-jenkins'
