@@ -29,13 +29,8 @@ pipeline {
         script{
           withSonarQubeEnv('sonarserver'){
             sh '''
-            ${scannerHome}/bin/sonar-scanner \
-            -D sonar.projectKey=YOUR_PROJECT_KEY_HERE \
-            -D sonar.projectName=YOUR_PROJECT_NAME_HERE \
-            -D sonar.projectVersion=YOUR_PROJECT_VERSION_HERE \
-            -D sonar.languages=js \  
-            -D sonar.sources=. 
-               
+            ${scannerHome}/bin/sonar-scanner 
+            
             '''
              
           }
