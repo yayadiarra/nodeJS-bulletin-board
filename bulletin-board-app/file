@@ -23,7 +23,7 @@ pipeline {
      
      stage ('Sonarqube analysis and testing'){
       environment {
-            scannerHome = tool 'SonarQube_4.3.0'
+            scannerHome = tool 'yannick'
         }
       steps{
         script{
