@@ -34,7 +34,7 @@ pipeline {
             -D sonar.projectName=YOUR_PROJECT_NAME_HERE \
             -D sonar.projectVersion=YOUR_PROJECT_VERSION_HERE \
             -D sonar.languages=js \  
-            -D sonar.sources=. \
+            -D sonar.sources=. 
                
             '''
              
