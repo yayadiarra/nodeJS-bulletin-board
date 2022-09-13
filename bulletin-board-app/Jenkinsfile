@@ -1,5 +1,8 @@
 pipeline {
   agent any 
+    tools {
+    nodejs "nodeJs-yaya"
+  }
   stages {
     stage (' listing content ') {
       steps {
