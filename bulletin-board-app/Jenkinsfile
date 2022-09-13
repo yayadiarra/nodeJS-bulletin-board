@@ -9,13 +9,7 @@ pipeline {
         sh 'ls'
       }
     }
-    stage(' cd root directory ') {
-      steps {
-        dir('bulletin-board-app') {
-          sh 'npm install'
-        }
-      }
-    }
+    
       stage('build and push') {
         steps {  
           dir('bulletin-board-app') {
