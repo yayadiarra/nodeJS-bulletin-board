@@ -1,0 +1,29 @@
+pipeline {
+  agent any 
+  stages {
+    stage (' listing content ') {
+      steps {
+        sh 'ls'
+      }
+    }
+    stage(' cd root directory ') {
+      steps {
+        dir('nodeJS-bulletin-board/bulletin-board-app') {
+          sh 'npm install'
+        }
+    }
+      stage('build and push') {
+        steps {  
+          dir('nodeJS-bulletin-board/bulletin-board-app') {
+          sh ''
+        
+    
+  
+  
+  
+  
+  
+  
+  
+  
+}
