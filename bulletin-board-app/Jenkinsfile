@@ -1,7 +1,7 @@
 pipeline {
   agent any 
     tools {
-    nodejs "nodeJs-yaya"
+    nodejs "nodejs-yaya"
   }
   stages {
     stage (' listing content ') {
@@ -14,8 +14,8 @@ pipeline {
         steps {  
           dir('bulletin-board-app') {
                        withDockerRegistry([ credentialsId: "Docker_creds", url: "https://index.docker.io/v1/" ]){
-               sh 'docker build -t devopstrainingschool/bulletin-nodeJs:$BUILD_NUMBER . -f Dockerfile'
-               sh 'docker push devopstrainingschool/bulletin-nodeJs:$BUILD_NUMBER'
+               sh 'docker build -t devopstrainingschool/bulletin-nodejs:$BUILD_NUMBER . -f Dockerfile'
+               sh 'docker push devopstrainingschool/bulletin-nodejs:$BUILD_NUMBER'
                        }
           }
         }
