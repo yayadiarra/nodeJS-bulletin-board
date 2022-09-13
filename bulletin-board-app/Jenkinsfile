@@ -14,6 +14,7 @@ pipeline {
         dir('nodeJS-bulletin-board/bulletin-board-app') {
           sh 'npm install'
         }
+      }
     }
       stage('build and push') {
         steps {  
