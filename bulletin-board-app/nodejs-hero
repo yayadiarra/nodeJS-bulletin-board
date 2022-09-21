@@ -1,35 +1,30 @@
 pipeline {
-  agent any 
-    tools {
-    nodejs "nodejs-hero"
+agent any
+  tools {
+    maven "maven-hero"
   }
+ 
   stages {
-    stage (' listing content ') {
-      steps {
-        sh 'ls'
+    
+    stage ('Maven Clean'){
+      steps{
+        sh 'mvn clean'
+      }
+     }
+    }
+    stage ('Maven package') { 
+      steps{
+        sh 'mvn package'
       }
     }
-    
-      stage('build and push') {
-        steps {  
-          dir('bulletin-board-app') {
-                       withDockerRegistry([ credentialsId: "nodejs_creds", url: "https://index.docker.io/v1/" ]){
-               sh 'docker build -t yayadiarra/nodejs-hero:$BUILD_NUMBER . -f Dockerfile'
-               sh 'docker push yayadiarra/nodejs-hero:$BUILD_NUMBER'
-                       }
-          }
-        }
-        
+       stage ('Docker build and push'){
+            steps{
+             withDockerRegistry([ credentialsId: "Docker_creds", url: "https://index.docker.io/v1/" ]){
+               sh 'docker build -t devopstrainingschool/knote-jenkins:$BUILD_NUMBER . -f Dockerfile'
+               sh 'docker push devopstrainingschool/knote-jenkins:$BUILD_NUMBER'
+               
              }
-      
-        
-    
-  
+           }
     }
-  
-  
-  
-  
-  
-  
+    
 }
