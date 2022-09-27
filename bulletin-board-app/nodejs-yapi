@@ -1,0 +1,35 @@
+pipeline {
+  agent any 
+    tools {
+    nodejs "nodejs-yapi"
+  }
+  stages {
+    stage (' listing content ') {
+      steps {
+        sh 'ls'
+      }
+    }
+    
+      stage('build and push') {
+        steps {  
+          dir('bulletin-board-app') {
+                       withDockerRegistry([ credentialsId: "nodejs-creds", url: "https://index.docker.io/v1/" ]){
+               sh 'docker build -t yayadiarra/wifi:$BUILD_NUMBER . -f Dockerfile'
+               sh 'docker push yayadiarra/wifi:$BUILD_NUMBER'
+                       }
+          }
+        }
+        
+             }
+      
+        
+    
+  
+    }
+  
+  
+  
+  
+  
+  
+}
